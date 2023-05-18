@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale = 1.0, maximum-scale = 1.0, user-scalable=no" />
+    <title>test</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  
+    <style>
+        input:focus {outline:none;}
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .search {
+            width: 80%;
+            position: relative;
+            margin: 0 auto;
+        }
+        input.btn_image {
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+            height: 40px;
+            border-radius: 5px;
+            background: #e4e2e2;
+            border: none;
+            text-align: center;
+            
+        }
+        input.btn_image::placeholder {
+            padding-left: 20px;
+            font-size: 80%;
+        }
+        button.btn_image{
+            position: absolute;
+            background: url("https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png") no-repeat;
+            background-size: cover;
+            height: 30px;
+            width: 30px;
+            right: 10px;
+            top: 5px;
+            border: none;
+        }
+    </style>
+
+</head>
+</head>
+<body>
+    <h1>Hello World!</h1>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <div class="search">
+        <input type="text" class="btn_image" placeholder="메뉴를 검색해주세요">
+        <button type="button" class="btn_image" id="img_btn"></button> 
+
+    </div>
+    <!-- bootstrap -->
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+    </div>
+
+</body>
