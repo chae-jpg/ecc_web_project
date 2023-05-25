@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> ECC Web Project - EYum </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale = 1.0, maximum-scale = 1.0, user-scalable=no" />
+        <style>
+            h1{
+                font-size:30px;
+                text-align:center;
+                margin-top:15px;
+            }
+            #grid{
+                display:grid;
+                grid-template-columns:1fr 1fr 20fr 1fr 1fr;
+                text-align:center;
+                border-bottom:2px solid black;
+                margin-bottom:20px;
+            }
+            .image{
+                width:35px;
+                height:35px;
+                margin-top:20px;
+            }
+
+
+            /*search*/
+            input:focus {outline:none;}
+            .search {
+                width: 80%;
+                position: relative;
+                margin : 0 auto;
+            }
+
+            input.btn_image {
+                margin: 0px;
+                padding: 0px;
+                border: none;
+                width: 100%;
+                height: 50px;
+                border-radius: 5px;
+                background: lightgray;
+                text-align: center;
+            }
+            input.btn_image::placeholder {
+                font-size: 100%;
+            }
+            button.btn_image{
+                background: url("search.png") no-repeat;
+                background-size: cover;
+                position: absolute;
+                height: 30px;
+                width: 30px;
+                left: 20px;
+                top: 10px;
+                border: none;
+            }
+
+
+            /*메뉴더보기*/
+            button.menuplus{
+                position:absolute;
+                left:50%;
+                top:90%;
+                transform:translate(-50%,-50%);
+                margin: 0px;
+                padding: 0px;
+                border: 2px solid black;
+                width:50%;
+                height:50px;
+                border-radius:50px;
+                background:white;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="grid">
+            <div><img src="home.png" class="image"></div>
+            <div style="margin-right:10px"><img src="blank.png" class="image"></div> <!--추가-->
+            <div><h1>E-Yum</h1></div>
+            <div style="margin-right:10px"><img src="heart.png" class="image"></div>
+            <div><img src="location.png" class="image"></div>
+        </div>
+
+        <!--검색창-->
+        <div class="search">
+            <input type="text" class="btn_image" placeholder="메뉴를 검색해주세요">
+            <button type="button" class="btn_image" id="img_btn"></button>
+        </div>
+
+
+        <div>
+            <button type="button" class="menuplus">메뉴 더보기</button>
+        </div>
+    </body>
+</html>
