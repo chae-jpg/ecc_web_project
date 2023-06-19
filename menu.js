@@ -15,4 +15,5 @@ for (let i = 0; i < heart_btn.length; i++) {
             heart_btn[i].classList.add("not_clicked");
         }
     });
+    const temp = 1;
 }
