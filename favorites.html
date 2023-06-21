@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> 즐겨찾기 </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale = 1.0, maximum-scale = 1.0, user-scalable=no" />
+        <style>
+
+            #grid{
+                display:grid;
+                grid-template-columns:10fr 1fr 6fr 10fr;
+                text-align:center;
+                border-bottom:2px solid black;
+            }
+            .image{
+                width:30px;
+                height:30px;
+                margin: 10px;
+                margin-left: 15px;
+            }
+            #favorite_title {
+                margin-top: 10px;
+                font-size: 20px;
+            }
+            #heart_img {
+                width:25px;
+                height:25px;
+                margin: 0;
+                margin-top: 12px;
+            }
+            .heart_btn {
+                background: url("heart_filled.png");
+                background-size: cover;
+                height: 20px;
+                width: 20px;
+                margin-left: auto;
+                align-self: flex-start;
+                margin-top: 10px;
+                border: none;
+                margin-right: 20px;
+            }
+            .list_menu {
+                border : 1px solid #CBCBCB;
+                background-color : #FFF;
+                width: 80%;
+                height: 65px;
+                box-shadow: 0px 1px 5px 0.5px #CBCBCB;
+                display: flex;
+                align-items: center;
+                margin: 0 auto;
+                border: none;
+            }
+            .store_img_list {
+                border-radius: 15%;
+                max-height: 50px;
+                position: relative;
+                object-fit: cover;
+                left: 4%;
+                margin: 1%;
+            }
+            .store_name_list {
+                align-self: flex-start;
+                margin-left: 10%;
+                margin-top: 7px;
+                font-weight: bold;
+                font-size: 1rem;
+            }
+            #remove_btn {
+                margin: 10px;
+                margin-left : 70%;
+                border-radius:20%;
+                border:none;
+
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div id="grid">
+            <img src="undo.png" class="image">
+            <img src="heart_filled.png" class="image" id="heart_img">
+            <h3 id="favorite_title">
+                찜 목록
+            </h3>
+        </div>
+        <button id="remove_btn">
+            전체 삭제
+        </button>
+        <div class="list_menu">
+            <img src="https://img.siksinhot.com/place/1481587042136677.jpg" class="store_img_list">
+            <span class="store_name_list">
+                    돈천동
+                </span>
+            <button class="heart_btn not_clicked">
+            </button>
+        </div>
+        <div class="list_menu">
+            <img src="https://img.siksinhot.com/place/1481587042136677.jpg" class="store_img_list">
+            <span class="store_name_list">
+                    돈천동
+                </span>
+            <button class="heart_btn not_clicked">
+            </button>
+        </div>
+        <div class="list_menu">
+            <img src="https://img.siksinhot.com/place/1481587042136677.jpg" class="store_img_list">
+            <span class="store_name_list">
+                    돈천동
+                </span>
+            <button class="heart_btn not_clicked">
+            </button>
+        </div>
+        <script src="favorite.js"></script>
+    </body>
+</html>

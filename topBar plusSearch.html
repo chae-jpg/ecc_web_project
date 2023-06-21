@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> 즐겨찾기 </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale = 1.0, maximum-scale = 1.0, user-scalable=no" />
+        <style>
+
+            #grid{
+                display:grid;
+                grid-template-columns:10fr 1fr 6fr 10fr;
+                text-align:center;
+                border-bottom:2px solid black;
+                margin-bottom:20px;
+            }
+            .image{
+                width:30px;
+                height:30px;
+                margin: 10px;
+                margin-left: 15px;
+            }
+            #favorite_title {
+                margin-top: 10px;
+                font-size: 20px;
+            }
+            #heart_img {
+                width:25px;
+                height:25px;
+                margin: 0;
+                margin-top: 12px;
+            }
+
+
+        </style>
+    </head>
+
+    <body>
+        <div id="grid">
+            <img src="undo.png" class="image">
+            <img src="heart_filled.png" class="image" id="heart_img">
+            <h3 id="favorite_title">
+                찜 목록
+            </h3>
+        </div>
+
+    </body>
+</html>
