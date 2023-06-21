@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>E-Yum</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="dist/tagify.css">
+        <link rel="stylesheet" href="https://unpkg.com/@yaireo/dragsort/dist/dragsort.css" media="print" onload="this.media='all'">
+        <!--태그 스타일 코드-->
+        <style>
+          html, body{ min-height:100%; scroll-behavior: smooth; }
+          body{
+            font:14px Arial;
+            margin:0;
+            overflow-x:hidden;
+          } /* display:flex; flex-flow: column nowrap; align-items:center; justify-content:center; */
+        
+          /* details expander */
+          summary{ outline: none; font-size:1em; color: #333; cursor:pointer; margin:1em 0 0 0; user-select:none; transition: .15s ease-out; }
+          details[open] summary{ margin-bottom: 0.5em; }
+
+          .forkLink{ display:none; position:absolute; top:.7em; right:50%; transform:translateX(50%); }
+        
+        </style>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="dist/jQuery.tagify.min.js"></script>
+        <script src="https://unpkg.com/@yaireo/dragsort"></script>
+
+    
+        <style>
+
+            @media only screen and (max-device-width: 600px){
+                body{
+                    font-size: 12px;
+                }
+
+                body > header {
+                    position: relative;
+                    top: 0;
+                    margin-bottom: 3em;
+                }
+
+                section{
+                    flex-flow: column-reverse;
+                }
+            }
+        </style>
+        
+         <div class="container">
+        <div id="menu01">
+            <ul>
+                <strong>
+                <li><a href="#">한식</a></li>
+                <li><a href="#">중식</a></li>
+                <li><a href="#">일식</a></li>
+                <li><a href="#">양식</a></li>
+                <li><a href="#">카페</a></li>
+                </strong>
+            </ul>
+        </div>
+        </div>
+
+        <!--태그-->
+        <section id='section-readonly'>   
+            <input name='tags4' readonly value='#카공, #공간넓음, #혼밥, #비건, #가성비, #배달가능'>
+                <details>
+                    <summary>더보기</summary>  
+                    <input name='tags4' readonly value='더보기1, 더보기2, 더보기3'>
+                    <style>
+                        @keyframes readonlyStyles {
+                            0% {
+                                background: linear-gradient(45deg, var(--tag-bg) 25%, transparent 25%, transparent 50%, var(--tag-bg) 50%, var(--tag-bg) 75%, transparent 75%, transparent) 0/5px 5px;
+                                box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+                                filter: brightness(.95);
+                                border: none; 
+                            }
+                        }
+                    </style>
+                    
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                    <script src="dist/jQuery.tagify.min.js"></script>
+                    
+                    <script src="https://unpkg.com/@yaireo/dragsort"></script>
+                </details>
+        
+        </section>
+        
+        <script data-name='readonly'>
+(function(){
+var input = document.querySelector('input[name=tags4]'),
+    tagify = new Tagify(input);
+})()
+</script>
+
+    </body>
+</html>
