@@ -12,11 +12,14 @@
                 text-align:center;
                 border-bottom:2px solid black;
             }
-            .image{
+            #undo_btn{
                 width:30px;
                 height:30px;
                 margin: 10px;
                 margin-left: 15px;
+                background: url("undo.png");
+                background-size: cover;
+                border:none;
             }
             #favorite_title {
                 margin-top: 10px;
@@ -78,8 +81,8 @@
 
     <body>
         <div id="grid">
-            <img src="undo.png" class="image">
-            <img src="heart_filled.png" class="image" id="heart_img">
+            <button id="undo_btn"></button>
+            <img src="heart_filled.png" id="heart_img">
             <h3 id="favorite_title">
                 찜 목록
             </h3>

@@ -15,4 +15,8 @@ for (let i = 0; i < heart_btn.length; i++) {
             heart_btn[i].classList.add("not_clicked");
         }
     });
+const undo_btn = document.querySelector('#undo_btn');
+undo_btn.addEventListener("click", function () {
+    history.go(-1);
+});
 }
