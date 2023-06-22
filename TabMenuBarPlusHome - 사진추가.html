@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> ECC Web Project - EYum </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="dist/tagify.css">
+        <link rel="stylesheet" href="https://unpkg.com/@yaireo/dragsort/dist/dragsort.css" media="print" onload="this.media='all'">
+        <style>
+            h1{
+                font-size:30px;
+                text-align:center;
+                margin-top:15px;
+            }
+            #grid{
+                display:grid;
+                grid-template-columns:1fr 1fr 20fr 1fr 1fr;
+                text-align:center;
+                border-bottom:2px solid black;
+                margin-bottom:20px;
+            }
+            .image{
+                width:35px;
+                height:35px;
+                margin-top:20px;
+            }
+
+
+            /*search*/
+            input:focus {outline:none;}
+            .search {
+                width: 80%;
+                position: relative;
+                margin : 0 auto;
+            }
+
+            input.btn_image {
+                margin: 0px;
+                padding: 0px;
+                border: none;
+                width: 100%;
+                height: 50px;
+                border-radius: 5px;
+                background: lightgray;
+                text-align: center;
+            }
+            input.btn_image::placeholder {
+                font-size: 100%;
+            }
+            button.btn_image{
+                background: url("search.png") no-repeat;
+                background-size: cover;
+                position: absolute;
+                height: 30px;
+                width: 30px;
+                left: 20px;
+                top: 10px;
+                border: none;
+            }
+
+            h3{
+                text-align: center;
+            }
+            /*메뉴더보기*/
+            button.menuplus{
+                position:absolute;
+                left:50%;
+                top:90%;
+                transform:translate(-50%,-50%);
+                margin: 0px;
+                padding: 0px;
+                border: 2px solid black;
+                width:50%;
+                height:50px;
+                border-radius:50px;
+                background:white;
+                font-weight: bold;
+            }
+        </style>
+
+        <!--랭킹 목록-->
+        <style>
+            .ranking-number{
+                font-size:25px;
+                padding-left: 20px;
+            }
+            .heart_btn {
+                background: url("heart_empty.png");
+                background-size: cover;
+                height: 20px;
+                width: 20px;
+                margin-left: auto;
+                align-self: flex-start;
+                margin-top: 10px;
+                border: none;
+                margin-right: 20px;
+            }
+            .list_menu {
+                border : 1px solid #CBCBCB;
+                background-color : #FFF;
+                width: 80%;
+                height: 65px;
+                box-shadow: 0px 1px 5px 0.5px #CBCBCB;
+                display: flex;
+                align-items: center;
+                margin: 0 auto;
+                border: none;
+            }
+            .store_img_list {
+                border-radius: 15%;
+                max-height: 50px;
+                position: relative;
+                object-fit: cover;
+                left: 4%;
+                margin: 1%;
+            }
+            .store_name_list {
+                align-self: flex-start;
+                margin-left: 10%;
+                margin-top: 7px;
+                font-weight: bold;
+                font-size: 1rem;
+            }
+        </style>
+
+
+
+        <!--사진-->
+        <style>
+            * {box-sizing:border-box}
+
+            /* Slideshow container */
+            .slideshow-container {
+                max-width: 1000px;
+                position: relative;
+                margin: auto;
+            }
+
+            /* Hide the images by default */
+            .mySlides {
+                display: none;
+            }
+
+            /* Next & previous buttons */
+            .prev, .next {
+                cursor: pointer;
+                position: absolute;
+                top: 50%;
+                width: auto;
+                margin-top: -22px;
+                padding: 16px;
+                color: white;
+                font-weight: bold;
+                font-size: 18px;
+                transition: 0.6s ease;
+                border-radius: 0 3px 3px 0;
+                user-select: none;
+            }
+
+            /* Position the "next button" to the right */
+            .next {
+                right: 0;
+                border-radius: 3px 0 0 3px;
+            }
+
+            /* On hover, add a black background color with a little bit see-through */
+            .prev:hover, .next:hover {
+                background-color: rgba(0,0,0,0.8);
+            }
+
+            /* Caption text */
+            .text {
+                color: #f2f2f2;
+                font-size: 15px;
+                padding: 8px 12px;
+                position: absolute;
+                bottom: 8px;
+                width: 100%;
+                text-align: center;
+            }
+
+            /* Number text (1/3 etc) */
+            .numbertext {
+                color: #f2f2f2;
+                font-size: 12px;
+                padding: 8px 12px;
+                position: absolute;
+                top: 0;
+            }
+
+            /* The dots/bullets/indicators */
+            .dot {
+                cursor: pointer;
+                height: 15px;
+                width: 15px;
+                margin: 0 2px;
+                background-color: #bbb;
+                border-radius: 50%;
+                display: inline-block;
+                transition: background-color 0.6s ease;
+            }
+
+            .active, .dot:hover {
+                background-color: #717171;
+            }
+
+            /* Fading animation */
+            .fade {
+                -webkit-animation-name: fade;
+                -webkit-animation-duration: 1.5s;
+                animation-name: fade;
+                animation-duration: 1.5s;
+            }
+
+            @-webkit-keyframes fade {
+                from {opacity: .4}
+                to {opacity: 1}
+            }
+
+            @keyframes fade {
+                from {opacity: .4}
+                to {opacity: 1}
+            }
+        </style>
+
+
+
+        <!--탭 메뉴바-->
+        <style rel="stylesheet">
+            /*탭 가운데 맞춤*/
+            .centered-tab{
+                display:flex;
+                flex-wrap:nowrap;
+                overflow-x: auto;
+                justify-content:center;
+                align-items:center;
+            }
+
+            .tabs {
+                font-size: 13px; line-height: 20px;
+            }
+            .tabs ul:before, .tabs ul:after {
+                content: "\0020"; display: block; height: 0; visibility: hidden;	
+            } 
+            .tabs ul:after { clear: both; }
+            .tabs ul {
+                margin:0;
+                list-style:none;
+                /*padding: 0 6%;*/
+                padding:0;
+                border-bottom: 1px solid #e0e0e0;
+                zoom: 1;
+            }
+                
+            .tabs ul li {
+                position: relative;
+                float: left;
+                margin: 0;
+            }
+            .tabs ul li a {
+                background: #f6f6f6;
+                font-weight: bold;
+                text-align: center;
+                display: block;
+                border: 1px solid #e0e0e0;
+                color: #909090;
+                text-shadow: 0 1px 0 rgba(255,255,255, 0.75);
+                padding: 6px 18px; margin: 0 5px -1px 0;
+                /* Border Radius */
+                -webkit-border-top-left-radius: 10px;
+                -webkit-border-top-right-radius: 10px;
+                -moz-border-radius-topleft: 10px;
+                -moz-border-radius-topright: 10px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                text-decoration:none;
+            }
+            .tabs ul li a:hover {
+                border-color: rgb(214, 241, 207);
+                color: #606060;
+            }
+            .tabs ul li.active2 a {
+                background: #008676;
+                border-color: #000;
+                border-bottom: 1px solid #fff;
+                color: #fff;
+                margin-top: -4px;
+                padding-top: 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="grid">
+            <div><img src="home.png" class="image"></div>
+            <div style="margin-right:10px"><img src="blank.png" class="image"></div> <!--추가-->
+            <div><h1>E-Yum</h1></div>
+            <div style="margin-right:10px"><img src="heart.png" class="image"></div>
+            <div><img src="location.png" class="image"></div>
+        </div>
+
+        <!--검색창-->
+        <div class="search">
+            <input type="text" class="btn_image" placeholder="메뉴를 검색해주세요">
+            <button type="button" class="btn_image" id="img_btn"></button>
+        </div>
+
+        <div>
+            <h3>오늘의 추천 메뉴</h3>
+        </div>
+
+
+
+        <!-- Slideshow container -->
+        <div class="slideshow-container">
+            <!-- Full-width images with number and caption text -->
+                <div class="mySlides fade">
+                <div class="numbertext">1 / 3</div>
+                <img src="1.jpg" style="width:100%">
+                <div class="text">하나</div>
+            </div>
+      
+            <div class="mySlides fade">
+                <div class="numbertext">2 / 3</div>
+                <img src="2.jpg" style="width:100%">
+                <div class="text">둘</div>
+            </div>
+      
+            <div class="mySlides fade">
+                <div class="numbertext">3 / 3</div>
+                <img src="3.jpg" style="width:100%">
+                <div class="text">셋</div>
+            </div>
+                <!-- Next and previousbuttons -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+            <br>
+            <!-- The dots/circles -->
+            <div style="text-align:center">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
+
+
+            <script>
+                var slideIndex = 1; //slideindex라는 변수 설정해서 1로 초기화
+                showSlides(slideIndex); //showSlides라는 함수에서 slideindex 변수 이용
+      
+                // Next/previous controls
+                function plusSlides(n) {
+                    showSlides(slideIndex += n); 
+                }
+      
+                // Thumbnail image controls
+                function currentSlide(n) {
+                    showSlides(slideIndex = n);
+                }
+      
+                function showSlides(n) {
+                    var i;
+                    var slides = document.getElementsByClassName("mySlides"); //문서 전체 내에서 class 이름이 mySlides인 요소 지정
+                    var dots = document.getElementsByClassName("dot"); //문서 전체 내에서 class 이름이 dot인 요소 지정
+                    if (n > slides.length) {slideIndex = 1} //변수n(slideIndex)이 slides의 전체 개수보다 크면 slideIndex값을 1로 바꿈.
+                    if (n < 1) {slideIndex = slides.length} //변수n(slideIndex)이  1보다 작으면 slideIndex값을 slides.length로 바꿈.
+                    for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none"; //style.display="none"은 화면에 안보이게 하는 코드
+                    }
+                    for (i = 0; i < dots.length; i++) {
+                        dots[i].className = dots[i].className.replace(" active", ""); //dot class이름을 "active"에서 ""로 변경
+                    }
+                    slides[slideIndex-1].style.display = "block"; //-1 하는 이유 : index0부터 시작해서
+                    dots[slideIndex-1].className += " active";
+                }
+            </script>
+
+
+
+        <!--탭 메뉴바-->
+        <h3>에타 top3</h3>
+        <br/><br/><br/>
+        <div class="tabs centered-tab">
+            <ul>
+                <li class="active2"><a href="#">한식</a></li>
+                <li><a href="#">중식</a></li>
+                <li><a href="#">일식</a></li>
+                <li><a href="#">양식</a></li>
+                <li><a href="#">카페</a></li>
+            </ul>
+        </div>
+        
+        <br/><br/>
+        <div class="tabs centered-tab">
+            <ul>
+                <li><a href="#">한식</a></li>
+                <li class="active2"><a href="#">중식</a></li>
+                <li><a href="#">일식</a></li>
+                <li><a href="#">양식</a></li>
+                <li><a href="#">카페</a></li>
+            </ul>
+        </div>
+
+        <br/><br/>
+        <div class="tabs centered-tab">
+            <ul>
+                <li><a href="#">한식</a></li>
+                <li><a href="#">중식</a></li>
+                <li class="active2"><a href="#">일식</a></li>
+                <li><a href="#">양식</a></li>
+                <li><a href="#">카페</a></li>
+            </ul>
+        </div>
+        
+        <br/><br/>
+        <div class="tabs centered-tab">
+            <ul>
+                <li><a href="#">한식</a></li>
+                <li><a href="#">중식</a></li>
+                <li><a href="#">일식</a></li>
+                <li class="active2"><a href="#">양식</a></li>
+                <li><a href="#">카페</a></li>
+            </ul>
+        </div>
+        
+        <br/><br/>
+        <div class="tabs centered-tab">
+            <ul>
+                <li><a href="#">한식</a></li>
+                <li><a href="#">중식</a></li>
+                <li><a href="#">일식</a></li>
+                <li><a href="#">양식</a></li>
+                <li class="active2"><a href="#">카페</a></li>
+            </ul>
+        </div>
+
+        <!--랭킹 목록-->
+        <div class="list_menu">
+            <div class="ranking-number">1.</div>
+            <img src="https://img.siksinhot.com/place/1481587042136677.jpg" class="store_img_list">
+            <span class="store_name_list">
+                돈천동
+            </span>
+            <button class="heart_btn not_clicked">
+            </button>
+        </div>
+
+        <div class="list_menu">
+            <div class="ranking-number">2.</div>
+            <img src="https://img.siksinhot.com/place/1481587042136677.jpg" class="store_img_list">
+            <span class="store_name_list">
+                돈천동
+            </span>
+            <button class="heart_btn not_clicked">
+            </button>
+        </div>
+
+        <div class="list_menu">
+            <div class="ranking-number">3.</div>
+            <img src="https://img.siksinhot.com/place/1481587042136677.jpg" class="store_img_list">
+            <span class="store_name_list">
+                돈천동
+            </span>
+            <button class="heart_btn not_clicked">
+            </button>
+        </div>
+
+        <div>
+            <button type="button" class="menuplus">메뉴 더보기</button>
+        </div>
+    </body>
+</html>
