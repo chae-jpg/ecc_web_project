@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> ECC Web Project - EYum </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="dist/tagify.css">
+        <link rel="stylesheet" href="https://unpkg.com/@yaireo/dragsort/dist/dragsort.css" media="print" onload="this.media='all'">
+        <style>
+            h1{
+                font-size:30px;
+                text-align:center;
+                margin-top:15px;
+            }
+            #grid{
+                display:grid;
+                grid-template-columns:1fr 1fr 20fr 1fr 1fr;
+                text-align:center;
+                border-bottom:2px solid black;
+                margin-bottom:20px;
+            }
+            .image{
+                width:35px;
+                height:35px;
+                margin-top:20px;
+            }
+
+
+            /*search*/
+            input:focus {outline:none;}
+            .search {
+                width: 80%;
+                position: relative;
+                margin : 0 auto;
+            }
+
+            input.btn_image {
+                margin: 0px;
+                padding: 0px;
+                border: none;
+                width: 100%;
+                height: 50px;
+                border-radius: 5px;
+                background: lightgray;
+                text-align: center;
+            }
+            input.btn_image::placeholder {
+                font-size: 100%;
+            }
+            button.btn_image{
+                background: url("search.png") no-repeat;
+                background-size: cover;
+                position: absolute;
+                height: 30px;
+                width: 30px;
+                left: 20px;
+                top: 10px;
+                border: none;
+            }
+
+            h3{
+                text-align: center;
+            }
+            /*메뉴더보기*/
+            button.menuplus{
+                position:absolute;
+                left:50%;
+                top:90%;
+                transform:translate(-50%,-50%);
+                margin: 0px;
+                padding: 0px;
+                border: 2px solid black;
+                width:50%;
+                height:50px;
+                border-radius:50px;
+                background:white;
+                font-weight: bold;
+            }
+        </style>
+
+        <!--랭킹 목록-->
+        <style>
+            .ranking-number{
+                font-size:25px;
+                padding-left: 20px;
+            }
+            .heart_btn {
+                background: url("heart_empty.png");
+                background-size: cover;
+                height: 20px;
+                width: 20px;
+                margin-left: auto;
+                align-self: flex-start;
+                margin-top: 10px;
+                border: none;
+                margin-right: 20px;
+            }
+            .list_menu {
+                border : 1px solid #CBCBCB;
+                background-color : #FFF;
+                width: 80%;
+                height: 65px;
+                box-shadow: 0px 1px 5px 0.5px #CBCBCB;
+                display: flex;
+                align-items: center;
+                margin: 0 auto;
+                border: none;
+            }
+            .store_img_list {
+                border-radius: 15%;
+                max-height: 50px;
+                position: relative;
+                object-fit: cover;
+                left: 4%;
+                margin: 1%;
+            }
+            .store_name_list {
+                align-self: flex-start;
+                margin-left: 10%;
+                margin-top: 7px;
+                font-weight: bold;
+                font-size: 1rem;
+            }
+        </style>
+
+        <!--탭 메뉴바-->
+        <style rel="stylesheet">
+            /*탭 가운데 맞춤*/
+            .centered-tab{
+                display:flex;
+                flex-wrap:nowrap;
+                overflow-x: auto;
+                justify-content:center;
+                align-items:center;
+            }
+
+            .tabs {
+                font-size: 13px; line-height: 20px;
+            }
+            .tabs ul:before, .tabs ul:after {
+                content: "\0020"; display: block; height: 0; visibility: hidden;	
+            } 
+            .tabs ul:after { clear: both; }
+            .tabs ul {
+                margin:0;
+                list-style:none;
+                padding: 0 6%;
+                border-bottom: 1px solid #e0e0e0;
+                zoom: 1;
+            }
+                
+            .tabs ul li {
+                position: relative;
+                float: left;
+                margin: 0;
+            }
+            .tabs ul li a {
+                background: #f6f6f6;
+                font-weight: bold;
+                text-align: center;
+                display: block;
+                border: 1px solid #e0e0e0;
+                color: #909090;
+                text-shadow: 0 1px 0 rgba(255,255,255, 0.75);
+                padding: 6px 18px; margin: 0 5px -1px 0;
+                /* Border Radius */
+                -webkit-border-top-left-radius: 10px;
+                -webkit-border-top-right-radius: 10px;
+                -moz-border-radius-topleft: 10px;
+                -moz-border-radius-topright: 10px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                text-decoration:none;
+            }
+            .tabs ul li a:hover {
+                border-color: rgb(214, 241, 207);
+                color: #606060;
+            }
+            .tabs ul li.active a {
+                background: #008676;
+                border-color: #000;
+                border-bottom: 1px solid #fff;
+                color: #fff;
+                margin-top: -4px;
+                padding-top: 10px;
+            }
+                
+        </style>
+    </head>
+
+    <body>
+        <div id="grid">
+            <div><img src="home.png" class="image"></div>
+            <div style="margin-right:10px"><img src="blank.png" class="image"></div> <!--추가-->
+            <div><h1>E-Yum</h1></div>
+            <div style="margin-right:10px"><img src="heart.png" class="image"></div>
+            <div><img src="location.png" class="image"></div>
+        </div>
+
+        <!--검색창-->
+        <div class="search">
+            <input type="text" class="btn_image" placeholder="메뉴를 검색해주세요">
+            <button type="button" class="btn_image" id="img_btn"></button>
+        </div>
+
+        <div>
+            <h3>오늘의 추천 메뉴</h3>
+        </div>
+
+
+
+        <!--탭 메뉴바-->
+        <h3>에타 top3</h3>
+        <br/><br/><br/>
+        <div class="tabs centered-tab">
+            <ul>
+                <li class="active"><a href="#">한식</a></li>
+                <li><a href="#">중식</a></li>
+                <li><a href="#">일식</a></li>
+                <li><a href="#">양식</a></li>
+                <li><a href="#">카페</a></li>
+            </ul>
+        </div>
+        
+        <br/><br/>
+        <div class="tabs centered-tab">
+            <ul>
+                <li><a href="#">한식</a></li>
+                <li class="active"><a href="#">중식</a></li>
+                <li><a href="#">일식</a></li>
+                <li><a href="#">양식</a></li>
+                <li><a href="#">카페</a></li>
+            </ul>
+        </div>
+
+        <br/><br/>
+        <div class="tabs centered-tab">
+            <ul>
+                <li><a href="#">한식</a></li>
+                <li><a href="#">중식</a></li>
+                <li class="active"><a href="#">일식</a></li>
+                <li><a href="#">양식</a></li>
+                <li><a href="#">카페</a></li>
+            </ul>
+        </div>
+        
+        <br/><br/>
+        <div class="tabs centered-tab">
+            <ul>
+                <li><a href="#">한식</a></li>
+                <li><a href="#">중식</a></li>
+                <li><a href="#">일식</a></li>
+                <li class="active"><a href="#">양식</a></li>
+                <li><a href="#">카페</a></li>
+            </ul>
+        </div>
+        
+        <br/><br/>
+        <div class="tabs centered-tab">
+            <ul>
+                <li><a href="#">한식</a></li>
+                <li><a href="#">중식</a></li>
+                <li><a href="#">일식</a></li>
+                <li><a href="#">양식</a></li>
+                <li class="active"><a href="#">카페</a></li>
+            </ul>
+        </div>
+
+        <!--랭킹 목록-->
+        <div class="list_menu">
+            <div class="ranking-number">1.</div>
+            <img src="https://img.siksinhot.com/place/1481587042136677.jpg" class="store_img_list">
+            <span class="store_name_list">
+                돈천동
+            </span>
+            <button class="heart_btn not_clicked">
+            </button>
+        </div>
+
+        <div class="list_menu">
+            <div class="ranking-number">2.</div>
+            <img src="https://img.siksinhot.com/place/1481587042136677.jpg" class="store_img_list">
+            <span class="store_name_list">
+                돈천동
+            </span>
+            <button class="heart_btn not_clicked">
+            </button>
+        </div>
+
+        <div class="list_menu">
+            <div class="ranking-number">3.</div>
+            <img src="https://img.siksinhot.com/place/1481587042136677.jpg" class="store_img_list">
+            <span class="store_name_list">
+                돈천동
+            </span>
+            <button class="heart_btn not_clicked">
+            </button>
+        </div>
+        
+        <!-- javascript
+        <script data-name='readonly'>
+        (function(){
+            var input = document.querySelector('input[name=tags4]'),
+            tagify = new Tagify(input);
+            }
+        )()
+        </script>
+
+
+        <script>
+            const tabs = document.querySelectorAll('.tabs');
+            document.querySelectorAll('.tabs ul li').forEach((tab, index) => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(tab => tab.classList.remove('active'));
+                    tabs[index].classList.add('active');
+                });
+            });
+        </script>
+        -->
+
+        <div>
+            <button type="button" class="menuplus">메뉴 더보기</button>
+        </div>
+    </body>
+</html>
